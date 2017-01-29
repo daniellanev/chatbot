@@ -108,7 +108,8 @@ def get_reply(user_message):
 
 @route("/chat", method='POST')
 def chat():
-    user_message = request.POST.get('msg')
+    user_message_init = request.POST.get('msg')
+    user_message = user_message_init.lower()
     if (counter["count"] == 0):
         reply = get_welcome(user_message)
     elif (any(trigger_word in user_message for trigger_word in animations["no"])):
